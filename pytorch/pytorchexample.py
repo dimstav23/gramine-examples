@@ -51,6 +51,11 @@ for i in range(0, 1000):
 
 print("--- %.2f seconds ---" % (time.time() - start_time), flush=True)
 
+# Print the exec time.
+with open("res_"+str(cpu_num)+"_threads.txt", "w") as outfile:
+    outfile.write(str(time.time() - start_time) + " seconds\n")
+print("The execution time result was written to `res_"+str(cpu_num)+"_threads.txt` .")
+
 # Load the classes from disk.
 with open('classes.txt') as f:
     classes = [line.strip() for line in f.readlines()]
