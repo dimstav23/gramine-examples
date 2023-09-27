@@ -10,9 +10,17 @@ loader.log_level = "{{ log_level }}"
 loader.env.LD_LIBRARY_PATH = "/lib:/usr/lib:{{ arch_libdir }}:/usr/{{ arch_libdir }}"
 loader.env.HOME = "{{ env.HOME }}"
 
+sys.brk.max_size = "512M"
+sys.stack.size = "8M"
+libos.check_invalid_pointers = false
+
 # Restrict the maximum number of threads to prevent insufficient memory
 # issue, observed on CentOS/RHEL.
-loader.env.OMP_NUM_THREADS = "8"
+#loader.env.OMP_NUM_THREADS = "8"
+
+#loader.env.MKL_VERBOSE = "1"
+#loader.env.DNNL_VERBOSE = "1"
+loader.env.QEMU_CPU_NUM = { passthrough = true }
 
 loader.insecure__use_cmdline_argv = true
 
@@ -29,8 +37,8 @@ fs.mounts = [
   { type = "tmpfs", path = "/tmp" },
 ]
 
-sgx.enclave_size = "4G"
-sgx.max_threads = 32
+sgx.enclave_size = "8G"
+sgx.max_threads = 256
 sgx.edmm_enable = {{ 'true' if env.get('EDMM', '0') == '1' else 'false' }}
 
 sgx.trusted_files = [
