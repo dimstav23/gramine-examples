@@ -28,7 +28,7 @@ img = Image.open("input.jpg")
 vm_type = os.environ.get('QEMU_VM_TYPE')
 if vm_type == None:
     print("QEMU_VM_TYPE environment variable not specified")
-    print("Options: td|efi")
+    print("Options: td|efi|sgx")
     exit()
 
 cpu_num = int(os.environ.get('QEMU_CPU_NUM', "0"))

@@ -21,6 +21,7 @@ libos.check_invalid_pointers = false
 #loader.env.MKL_VERBOSE = "1"
 #loader.env.DNNL_VERBOSE = "1"
 loader.env.QEMU_CPU_NUM = { passthrough = true }
+loader.env.QEMU_VM_TYPE = { passthrough = true }
 
 loader.insecure__use_cmdline_argv = true
 
@@ -61,6 +62,16 @@ sgx.trusted_files = [
 
 sgx.allowed_files = [
   "file:result.txt",
+  "file:sgx_1_threads.txt",
+  "file:sgx_2_threads.txt",
+  "file:sgx_4_threads.txt",
+  "file:sgx_6_threads.txt",
+  "file:sgx_8_threads.txt",
+  "file:sgx_12_threads.txt",
+  "file:sgx_16_threads.txt",
+  "file:sgx_20_threads.txt",
+  "file:sgx_24_threads.txt",
+  "file:sgx_32_threads.txt"
 ]
 
 # Gramine optionally provides patched OpenMP runtime library that runs faster inside SGX enclaves
