@@ -60,6 +60,8 @@ print("--- %.2f seconds ---" % (time.time() - start_time), flush=True)
 # Print the exec time.
 with open(vm_type+"_"+str(cpu_num)+"_threads.txt", "w") as outfile:
     outfile.write(str(time.time() - start_time) + " seconds\n")
+    outfile.flush()
+    os.fsync(outfile.fileno())
 print("The execution time result was written to "+vm_type+"_"+str(cpu_num)+"_threads.txt` .")
 
 # Load the classes from disk.
@@ -69,5 +71,6 @@ with open('classes.txt') as f:
 # Print the 5 most likely predictions.
 with open("result.txt", "w") as outfile:
     outfile.write(str([(classes[idx], percentage[idx].item()) for idx in indices[0][:5]]))
-
+    outfile.flush()
+    os.fsync(outfile.fileno())
 print("Done. The result was written to `result.txt`.")
